@@ -12,7 +12,7 @@
     <header id="header">
         <div class="header-content">
             <div class="logo-title">
-                <img src="assets/DSN_logo.png" class="img_logo" alt="logo" >
+                <img src="assets/DSN_logo.png" class="logo_title" alt="logo_Day's Notes" >
                 <h1>Day's Notes</h1>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     <span>Note simple</span>
                 </div>
                 <div class="note-type-item" data-type="liste">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-tasks"></i>
                     <span>Note liste</span>
                 </div>
                 <div class="note-type-item" data-type="contact">
@@ -59,7 +59,7 @@
                     <span>Note lieu</span>
                 </div>
                 <div class="note-type-item" data-type="tache">
-                    <i class="fas fa-tasks"></i>
+                    <i class="fas fa-calendar-check"></i>
                     <span>Tâche</span>
                 </div>
             </div>
@@ -84,9 +84,10 @@
     <!-- Modale de visualisation -->
     <div class="modal" id="viewModal">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header-view">
+                <i id="viewIcon"></i>
                 <h2 id="viewTitle"></h2>
-                <button class="close-modal" id="closeViewModal">
+                <button class="close-modal-view" id="closeViewModal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>

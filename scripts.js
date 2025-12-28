@@ -16,10 +16,10 @@ const noteForm = document.getElementById('noteForm');
 // Icônes par type de note
 const noteIcons = {
     simple: 'fa-pen',
-    liste: 'fa-list',
+    liste: 'fa-tasks',
     contact: 'fa-user',
     lieu: 'fa-map-marker-alt',
-    tache: 'fa-tasks'
+    tache: 'fa-calendar-check'
 };
 
 // Initialisation
@@ -91,7 +91,6 @@ function openModal(modal) {
 function closeModal(modal) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    currentNoteId = null;
 }
 
 // Affichage du formulaire selon le type
@@ -126,7 +125,7 @@ function showNoteForm(type, note = null) {
                     <div class="list-items" id="listItems">
                         ${note && note.items ? note.items.map((item, index) => `
                             <div class="list-item">
-                                <input type="text" value="${item}" data-index="${index}">
+                                <input type="text" value="${item.text}" data-index="${index}">
                                 <button type="button" class="remove-item" onclick="removeListItem(this)">
                                     <i class="fas fa-times"></i>
                                 </button>
@@ -254,9 +253,29 @@ function saveNote(type, isEdit) {
             break;
 
         case 'liste':
-            note.items = Array.from(document.querySelectorAll('#listItems input'))
-                .map(input => input.value.trim())
-                .filter(item => item !== '');
+            const inputs = Array.from(document.querySelectorAll('#listItems input'));
+            note.items = inputs
+                .map(input => ({
+                    text: input.value.trim(),
+                    checked: false
+                }))
+                .filter(item => item.text !== '');
+            
+            // Si on modifie, on garde l'état des checks
+            if (isEdit) {
+                const oldNote = notes.find(n => n.id === currentNoteId);
+                if (oldNote && oldNote.items) {
+                    note.items = note.items.map((item, index) => {
+                        if (oldNote.items[index]) {
+                            return {
+                                text: item.text,
+                                checked: oldNote.items[index].checked || false
+                            };
+                        }
+                        return item;
+                    });
+                }
+            }
             break;
 
         case 'contact':
@@ -285,6 +304,12 @@ function saveNote(type, isEdit) {
     saveNotes();
     renderNotes();
     closeModal(formModal);
+    
+    // Si on était en mode édition, rouvrir la modale de visualisation
+    if (isEdit) {
+        viewNote(currentNoteId);
+    }
+    
     currentNoteId = null;
 }
 
@@ -313,7 +338,6 @@ function renderNotes() {
                             <i class="fas ${noteIcons[note.type]}"></i>
                             <div class="note-item-content">
                                 <span>${note.name}</span>
-                                <div class="note-date">${formatDate(note.date)}</div>
                             </div>
                         </div>
                         <button class="share-button" onclick="shareNoteFromList(event, ${note.id})">
@@ -348,18 +372,6 @@ function groupNotesByMonth(notes) {
     return grouped;
 }
 
-// Formatage de la date
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    
-    return `${day}/${month}/${year} à ${hours}:${minutes}`;
-}
-
 // Formatage de la date de tâche
 function formatTaskDate(dateString) {
     if (!dateString) return 'Non définie';
@@ -371,12 +383,28 @@ function formatTaskDate(dateString) {
     return `${day}/${month}/${year}`;
 }
 
+// Toggle check d'un item de liste
+window.toggleListItem = function(noteId, itemIndex) {
+    const note = notes.find(n => n.id === noteId);
+    if (!note || !note.items || !note.items[itemIndex]) return;
+    
+    note.items[itemIndex].checked = !note.items[itemIndex].checked;
+    saveNotes();
+    
+    // Rafraîchir l'affichage de la modale
+    viewNote(noteId);
+};
+
 // Visualisation d'une note
 window.viewNote = function(id) {
     const note = notes.find(n => n.id === id);
     if (!note) return;
 
     currentNoteId = id;
+    
+    // Mettre à jour l'icône et le titre
+    const iconElement = document.getElementById('viewIcon');
+    iconElement.className = `fas ${noteIcons[note.type]}`;
     document.getElementById('viewTitle').textContent = note.name;
 
     let contentHTML = '';
@@ -394,9 +422,14 @@ window.viewNote = function(id) {
         case 'liste':
             contentHTML = `
                 <div class="view-field">
-                    <label>Items</label>
+                    <label>Liste</label>
                     <ul>
-                        ${note.items.map(item => `<li>${item}</li>`).join('')}
+                        ${note.items.map((item, index) => `
+                            <li class="${item.checked ? 'checked' : ''}" onclick="toggleListItem(${note.id}, ${index})">
+                                <span>${item.text}</span>
+                                <i class="fas fa-check check-icon"></i>
+                            </li>
+                        `).join('')}
                     </ul>
                 </div>
             `;
@@ -442,13 +475,6 @@ window.viewNote = function(id) {
             break;
     }
 
-    contentHTML += `
-        <div class="view-field">
-            <label>Date de création</label>
-            <p>${formatDate(note.date)}</p>
-        </div>
-    `;
-
     document.getElementById('viewContent').innerHTML = contentHTML;
     openModal(viewModal);
 };
@@ -467,7 +493,10 @@ window.shareNoteFromList = function(event, id) {
             break;
 
         case 'liste':
-            shareText += note.items.map((item, i) => `${i + 1}. ${item}`).join('\n');
+            shareText += note.items.map((item, i) => {
+                const checkbox = item.checked ? '[✓]' : '[ ]';
+                return `${checkbox} ${item.text}`;
+            }).join('\n');
             break;
 
         case 'contact':
@@ -485,8 +514,6 @@ window.shareNoteFromList = function(event, id) {
             shareText += `Date: ${formatTaskDate(note.taskDate)}`;
             break;
     }
-
-    shareText += `\n\nCréé le ${formatDate(note.date)}`;
 
     // Utilisation de l'API Web Share si disponible
     if (navigator.share) {
@@ -520,6 +547,7 @@ function deleteNote() {
     saveNotes();
     renderNotes();
     closeModal(viewModal);
+    currentNoteId = null;
 }
 
 // Sauvegarde locale
