@@ -44,11 +44,9 @@ header.scrolled {
     gap: 12px;
 }
 
-
-.logo_title{
+.logo_title {
     width: 50px;
 }
-
 
 .logo-title h1 {
     font-size: 34px;
@@ -295,8 +293,9 @@ header.scrolled {
     color: #333;
 }
 
-/* Header de visualisation avec couleur */
-.modal-header-view {
+/* Header de visualisation et formulaire avec couleur */
+.modal-header-view,
+.modal-header-form {
     background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
     padding: 25px;
     display: flex;
@@ -306,12 +305,14 @@ header.scrolled {
     position: relative;
 }
 
-.modal-header-view i {
+.modal-header-view i,
+.modal-header-form i {
     font-size: 32px;
     color: white;
 }
 
-.modal-header-view h2 {
+.modal-header-view h2,
+.modal-header-form h2 {
     flex: 1;
     font-size: 22px;
     color: white;
@@ -560,7 +561,11 @@ form {
     background: #eef0ff;
 }
 
-.view-field li.checked {
+.view-field li .item-text {
+    flex: 1;
+}
+
+.view-field li.checked .item-text {
     text-decoration: line-through;
     color: #999;
 }
@@ -637,11 +642,13 @@ form {
         right: 10px;
     }
     
-    .modal-header-view h2 {
+    .modal-header-view h2,
+    .modal-header-form h2 {
         font-size: 18px;
     }
     
-    .modal-header-view i {
+    .modal-header-view i,
+    .modal-header-form i {
         font-size: 28px;
     }
 }

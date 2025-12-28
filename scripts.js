@@ -96,7 +96,13 @@ function closeModal(modal) {
 // Affichage du formulaire selon le type
 function showNoteForm(type, note = null) {
     const isEdit = note !== null;
-    document.getElementById('formTitle').textContent = isEdit ? 'Modifier la note' : 'Nouvelle note';
+    
+    // Mettre à jour l'icône et le titre du header du formulaire
+    const formIcon = document.getElementById('formIcon');
+    formIcon.className = `fas ${noteIcons[type]}`;
+    
+    const formTitle = document.getElementById('formTitle');
+    formTitle.textContent = isEdit ? note.name : 'Nouvelle note';
     
     let formHTML = '';
 
@@ -426,7 +432,7 @@ window.viewNote = function(id) {
                     <ul>
                         ${note.items.map((item, index) => `
                             <li class="${item.checked ? 'checked' : ''}" onclick="toggleListItem(${note.id}, ${index})">
-                                <span>${item.text}</span>
+                                <span class="item-text">${item.text}</span>
                                 <i class="fas fa-check check-icon"></i>
                             </li>
                         `).join('')}
