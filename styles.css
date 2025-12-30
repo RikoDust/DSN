@@ -141,7 +141,7 @@ header.scrolled {
 }
 
 .note-item span {
-    font-size: 16px;
+    font-size: 18px;
     color: #333;
     font-weight: 500;
     display: block;
@@ -211,7 +211,10 @@ header.scrolled {
     width: 60px;
     height: 60px;
     border-radius: 12px;
+    /*
     background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
+    */
+    background-color: #5b29ef;
     border: none;
     color: white;
     font-size: 28px;
@@ -297,7 +300,7 @@ header.scrolled {
 .modal-header-view,
 .modal-header-form {
     background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
-    padding: 25px;
+    padding: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -492,7 +495,10 @@ form {
 }
 
 .btn-primary {
+    /*
     background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
+    */
+    background-color: #5b29ef;
     color: white;
     width: 100%;
     justify-content: center;
@@ -590,7 +596,10 @@ form {
 }
 
 .btn-edit {
+    /*
     background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
+    */
+    background-color: #5b29ef;
     color: white;
     flex: 1;
     min-width: 140px;

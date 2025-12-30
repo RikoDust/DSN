@@ -91,6 +91,7 @@ function openModal(modal) {
 function closeModal(modal) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    // Ne pas réinitialiser currentNoteId ici pour permettre les modifications multiples
 }
 
 // Affichage du formulaire selon le type
@@ -313,10 +314,14 @@ function saveNote(type, isEdit) {
     
     // Si on était en mode édition, rouvrir la modale de visualisation
     if (isEdit) {
-        viewNote(currentNoteId);
+        // Utiliser un petit délai pour permettre à la modale de formulaire de se fermer complètement
+        setTimeout(() => {
+            viewNote(currentNoteId);
+        }, 100);
+    } else {
+        // Réinitialiser currentNoteId uniquement lors d'une nouvelle création
+        currentNoteId = null;
     }
-    
-    currentNoteId = null;
 }
 
 // Affichage des notes
@@ -542,6 +547,7 @@ function editNote() {
 
     closeModal(viewModal);
     currentNoteType = note.type;
+    // Ne pas réinitialiser currentNoteId pour permettre les modifications multiples
     showNoteForm(note.type, note);
 }
 
