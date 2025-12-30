@@ -41,7 +41,7 @@ header.scrolled {
 .logo-title {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .logo_title {
@@ -211,9 +211,6 @@ header.scrolled {
     width: 60px;
     height: 60px;
     border-radius: 12px;
-    /*
-    background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
-    */
     background-color: #5b29ef;
     border: none;
     color: white;
@@ -495,9 +492,6 @@ form {
 }
 
 .btn-primary {
-    /*
-    background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
-    */
     background-color: #5b29ef;
     color: white;
     width: 100%;
@@ -546,6 +540,28 @@ form {
 .view-field ul {
     list-style: none;
     padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Style personnalisé pour la scrollbar */
+.view-field ul::-webkit-scrollbar {
+    width: 8px;
+}
+
+.view-field ul::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.view-field ul::-webkit-scrollbar-thumb {
+    background: #5280fc;
+    border-radius: 10px;
+}
+
+.view-field ul::-webkit-scrollbar-thumb:hover {
+    background: #4169db;
 }
 
 .view-field li {
@@ -596,9 +612,6 @@ form {
 }
 
 .btn-edit {
-    /*
-    background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
-    */
     background-color: #5b29ef;
     color: white;
     flex: 1;
@@ -623,10 +636,17 @@ form {
     background: #ee384a;
 }
 
+
+
+
+
+
+
+
 /* Responsive */
 @media (max-width: 480px) {
     .logo-title h1 {
-        font-size: 18px;
+        font-size: 30px;
     }
 
     .modal-content {
