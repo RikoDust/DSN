@@ -54,6 +54,7 @@ header.scrolled {
     font-weight: 600;
 }
 
+
 /* Zone d'affichage des notes */
 .notes-container {
     max-width: 800px;
@@ -105,6 +106,7 @@ header.scrolled {
     background: white;
     border-radius: 2px;
 }
+
 
 /* Items de notes */
 .note-item-wrapper {
@@ -202,17 +204,18 @@ header.scrolled {
     opacity: 1;
 }
 
+
 /* Bouton d'ajout */
 .add-button {
     position: fixed;
-    bottom: 30px;
+    bottom: max(30px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     width: 60px;
     height: 60px;
+    border: none ;
     border-radius: 12px;
-    background-color: #5b29ef;
-    border: none;
+    background-color: #5280fc;
     color: white;
     font-size: 28px;
     cursor: pointer;
