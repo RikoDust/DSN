@@ -2,6 +2,7 @@
 let notes = [];
 let currentNoteId = null;
 let currentNoteType = null;
+let scrollPosition = 0; // Pour sauvegarder la position du scroll
 
 // Éléments DOM
 const header = document.getElementById('header');
@@ -56,6 +57,7 @@ function setupEventListeners() {
 
     document.getElementById('closeViewModal').addEventListener('click', () => {
         closeModal(viewModal);
+        scrollPosition = 0; // Réinitialiser la position
     });
 
     // Clic en dehors de la modale
@@ -63,6 +65,9 @@ function setupEventListeners() {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal(modal);
+                if (modal === viewModal) {
+                    scrollPosition = 0; // Réinitialiser la position
+                }
             }
         });
     });
@@ -321,6 +326,7 @@ function saveNote(type, isEdit) {
     } else {
         // Réinitialiser currentNoteId uniquement lors d'une nouvelle création
         currentNoteId = null;
+        scrollPosition = 0;
     }
 }
 
@@ -399,15 +405,21 @@ window.toggleListItem = function(noteId, itemIndex) {
     const note = notes.find(n => n.id === noteId);
     if (!note || !note.items || !note.items[itemIndex]) return;
     
+    // Sauvegarder la position du scroll avant de modifier
+    const listElement = document.querySelector('.view-field ul');
+    if (listElement) {
+        scrollPosition = listElement.scrollTop;
+    }
+    
     note.items[itemIndex].checked = !note.items[itemIndex].checked;
     saveNotes();
     
     // Rafraîchir l'affichage de la modale
-    viewNote(noteId);
+    viewNote(noteId, true);
 };
 
 // Visualisation d'une note
-window.viewNote = function(id) {
+window.viewNote = function(id, maintainScroll = false) {
     const note = notes.find(n => n.id === id);
     if (!note) return;
 
@@ -434,7 +446,7 @@ window.viewNote = function(id) {
             contentHTML = `
                 <div class="view-field">
                     <label>Liste</label>
-                    <ul>
+                    <ul id="noteListItems">
                         ${note.items.map((item, index) => `
                             <li class="${item.checked ? 'checked' : ''}" onclick="toggleListItem(${note.id}, ${index})">
                                 <span class="item-text">${item.text}</span>
@@ -487,6 +499,19 @@ window.viewNote = function(id) {
     }
 
     document.getElementById('viewContent').innerHTML = contentHTML;
+    
+    // Si on maintient le scroll (après un toggle), restaurer la position
+    if (maintainScroll && note.type === 'liste') {
+        setTimeout(() => {
+            const listElement = document.querySelector('.view-field ul');
+            if (listElement) {
+                listElement.scrollTop = scrollPosition;
+            }
+        }, 0);
+    } else {
+        scrollPosition = 0; // Réinitialiser si c'est une nouvelle ouverture
+    }
+    
     openModal(viewModal);
 };
 
@@ -547,6 +572,7 @@ function editNote() {
 
     closeModal(viewModal);
     currentNoteType = note.type;
+    scrollPosition = 0; // Réinitialiser la position du scroll
     // Ne pas réinitialiser currentNoteId pour permettre les modifications multiples
     showNoteForm(note.type, note);
 }
@@ -560,6 +586,7 @@ function deleteNote() {
     renderNotes();
     closeModal(viewModal);
     currentNoteId = null;
+    scrollPosition = 0;
 }
 
 // Sauvegarde locale
