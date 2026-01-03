@@ -32,9 +32,10 @@ header.scrolled {
 
 .header-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 800px; /* Même largeur que les notes */
+    padding: 10px 30px;
     margin: 0 auto;
 }
 
@@ -52,7 +53,37 @@ header.scrolled {
     font-size: 34px;
     color: #5280fc;
     font-weight: 600;
+    transition: color 0.3s ease;
+    white-space: nowrap;
 }
+
+/* Bouton de toggle du thème */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #5280fc;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: #f8f9ff;
+    transform: scale(1.1);
+}
+
+
+
+
+
+
 
 
 /* Zone d'affichage des notes */
@@ -127,10 +158,12 @@ header.scrolled {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/*
 .note-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+    */
 
 .note-item i {
     font-size: 24px;
@@ -157,10 +190,10 @@ header.scrolled {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #5280fc;
-    font-size: 20px;
+    color: /* #5280fc */ #5b29ef ;
+    font-size: 22px;
     cursor: pointer;
-    padding: 8px;
+    padding: 4px;
     border-radius: 8px;
     transition: all 0.3s ease;
     z-index: 10;
@@ -646,10 +679,149 @@ form {
 
 
 
+
+
+
+/* DARK MODE */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode header {
+    background: #1a1a2e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode header.scrolled {
+    background: rgba(26, 26, 46, 0.9);
+}
+
+body.dark-mode .logo-title h1 {
+    color: #56f6e4;
+}
+
+body.dark-mode .theme-toggle {
+    color: #56f6e4;
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: rgba(86, 246, 228, 0.1);
+}
+
+body.dark-mode .empty-state {
+    color: white;
+}
+
+body.dark-mode .note-item {
+    background: #2d2d44;
+    color: white;
+}
+
+body.dark-mode .note-item span {
+    color: white;
+}
+
+body.dark-mode .note-item i {
+    color: #56f6e4;
+}
+
+body.dark-mode .share-button {
+    color: #56f6e4;
+}
+
+body.dark-mode .share-button:hover {
+    background: rgba(86, 246, 228, 0.1);
+}
+
+body.dark-mode .month-label {
+    color: white;
+}
+
+body.dark-mode .modal-content {
+    background: #2d2d44;
+}
+
+body.dark-mode .modal-header h2 {
+    color: white;
+}
+
+body.dark-mode .close-modal {
+    color: #ccc;
+}
+
+body.dark-mode .close-modal:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+body.dark-mode .note-type-item {
+    background: #1a1a2e;
+    border-color: #3d3d5c;
+}
+
+body.dark-mode .note-type-item span {
+    color: white;
+}
+
+body.dark-mode .note-type-item:hover {
+    background: rgba(86, 246, 228, 0.1);
+    border-color: #56f6e4;
+}
+
+body.dark-mode .form-group label {
+    color: white;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background: #1a1a2e;
+    border-color: #3d3d5c;
+    color: white;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    background: #16213e;
+    border-color: #56f6e4;
+}
+
+body.dark-mode .view-field label {
+    color: #56f6e4;
+}
+
+body.dark-mode .view-field p,
+body.dark-mode .view-field li {
+    color: white;
+    background: #1a1a2e;
+}
+
+body.dark-mode .view-field li:hover {
+    background: rgba(86, 246, 228, 0.1);
+}
+
+body.dark-mode .view-actions {
+    border-top-color: #3d3d5c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive */
 @media (max-width: 480px) {
     .logo-title h1 {
         font-size: 30px;
+    }
+
+    .header-content{
+        padding: 4px;
     }
 
     .modal-content {
@@ -672,6 +844,7 @@ form {
 
     .share-button {
         right: 10px;
+        font-size: 20px;
     }
     
     .modal-header-view h2,

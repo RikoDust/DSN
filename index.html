@@ -1,110 +1,162 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day's Notes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/DSN_logo.png" type="image/png">
-</head>
-<body>
-    <!-- Header -->
-    <header id="header">
-        <div class="header-content">
-            <div class="logo-title">
-                <img src="assets/DSN_logo.png" alt="Logo" class="logo_title">
-                <h1>Day's Notes</h1>
-            </div>
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Day's Notes</title>
 
-    <!-- Zone d'affichage des notes -->
-    <main class="notes-container" id="notesContainer">
-        <div class="empty-state" id="emptyState">
-            <i class="fas fa-sticky-note"></i>
-            <p>Aucune note pour le moment</p>
-            <p class="empty-subtitle">Cliquez sur + pour créer votre première note</p>
-        </div>
-    </main>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="assets/DSN_logo.png" type="image/png">
+    </head>
 
-    <!-- Bouton d'ajout -->
-    <button class="add-button" id="addButton">
-        <i class="fas fa-plus"></i>
-    </button>
+    <body>
 
-    <!-- Modale de sélection du type de note -->
-    <div class="modal" id="typeModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Nouvelle note</h2>
-                <button class="close-modal" id="closeTypeModal">
-                    <i class="fas fa-times"></i>
+        <!-- Header -->
+        <header id="header">
+            <div class="header-content">
+                <div class="logo-title">
+                    <img src="assets/DSN_logo.png" alt="Logo Day's Notes" class="logo_title">
+                    <h1>Day's Notes</h1>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <i class="fas fa-moon"></i>
                 </button>
             </div>
-            <div class="note-types">
-                <div class="note-type-item" data-type="simple">
-                    <i class="fas fa-pen"></i>
-                    <span>Texte</span>
+        </header>
+
+        <!-- Zone d'affichage des notes -->
+        <main class="notes-container" id="notesContainer">
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-sticky-note" aria-hidden="true"></i>
+                <p>Aucune note pour le moment</p>
+                <p class="empty-subtitle">Cliquez sur + pour créer votre première note</p>
+            </div>
+        </main>
+
+        <!-- Bouton d'ajout -->
+        <button
+            class="add-button"
+            id="addButton"
+            aria-label="Ajouter une note"
+        >
+            <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+
+        <!-- Modale de sélection du type de note -->
+        <div
+            class="modal"
+            id="typeModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="typeModalTitle"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="typeModalTitle">Nouvelle note</h2>
+                    <button
+                        class="close-modal"
+                        id="closeTypeModal"
+                        aria-label="Fermer la fenêtre"
+                    >
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <div class="note-type-item" data-type="liste">
-                    <i class="fas fa-tasks"></i>
-                    <span>Liste</span>
-                </div>
-                <div class="note-type-item" data-type="contact">
-                    <i class="fas fa-user"></i>
-                    <span>Contact</span>
-                </div>
-                <div class="note-type-item" data-type="lieu">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Lieu</span>
-                </div>
-                <div class="note-type-item" data-type="tache">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>Tâche / Rdv</span>
+
+                <div class="note-types">
+                    <button class="note-type-item" data-type="simple">
+                        <i class="fas fa-pen" aria-hidden="true"></i>
+                        <span>Texte</span>
+                    </button>
+
+                    <button class="note-type-item" data-type="liste">
+                        <i class="fas fa-tasks" aria-hidden="true"></i>
+                        <span>Liste</span>
+                    </button>
+
+                    <button class="note-type-item" data-type="contact">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <span>Contact</span>
+                    </button>
+
+                    <button class="note-type-item" data-type="lieu">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <span>Lieu</span>
+                    </button>
+
+                    <button class="note-type-item" data-type="tache">
+                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                        <span>Tâche / Rdv</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modale de saisie -->
-    <div class="modal" id="formModal">
-        <div class="modal-content">
-            <div class="modal-header-form" id="formHeader">
-                <i id="formIcon"></i>
-                <h2 id="formTitle">Nouvelle note</h2>
-                <button class="close-modal-view" id="closeFormModal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <form id="noteForm">
-                <!-- Formulaire dynamique -->
-            </form>
-        </div>
-    </div>
+        <!-- Modale de saisie -->
+        <div
+            class="modal"
+            id="formModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="formTitle"
+        >
+            <div class="modal-content">
+                <div class="modal-header-form" id="formHeader">
+                    <i id="formIcon" aria-hidden="true"></i>
+                    <h2 id="formTitle">Nouvelle note</h2>
+                    <button
+                        class="close-modal-view"
+                        id="closeFormModal"
+                        aria-label="Fermer la fenêtre"
+                    >
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
 
-    <!-- Modale de visualisation -->
-    <div class="modal" id="viewModal">
-        <div class="modal-content">
-            <div class="modal-header-view">
-                <i id="viewIcon"></i>
-                <h2 id="viewTitle"></h2>
-                <button class="close-modal-view" id="closeViewModal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="viewContent"></div>
-            <div class="view-actions">
-                <button class="btn btn-edit" id="editBtn">
-                    Modifier
-                </button>
-                <button class="btn btn-delete" id="deleteBtn">
-                    <i class="fas fa-trash"></i> Supprimer
-                </button>
+                <form id="noteForm">
+                    <!-- Formulaire dynamique -->
+                </form>
             </div>
         </div>
-    </div>
 
-    <script src="scripts.js"></script>
-</body>
+        <!-- Modale de visualisation -->
+        <div
+            class="modal"
+            id="viewModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="viewTitle"
+        >
+            <div class="modal-content">
+                <div class="modal-header-view">
+                    <i id="viewIcon" aria-hidden="true"></i>
+                    <h2 id="viewTitle"></h2>
+                    <button
+                        class="close-modal-view"
+                        id="closeViewModal"
+                        aria-label="Fermer la fenêtre"
+                    >
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div id="viewContent"></div>
+
+                <div class="view-actions">
+                    <button class="btn btn-edit" id="editBtn">
+                        Modifier
+                    </button>
+
+                    <button class="btn btn-delete" id="deleteBtn">
+                        <i class="fas fa-trash" aria-hidden="true"></i>
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts.js"></script>
+        <script src="darkmode.js"></script>
+
+    </body>
 </html>
