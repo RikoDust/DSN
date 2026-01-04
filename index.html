@@ -25,6 +25,7 @@
             </div>
         </header>
 
+
         <!-- Zone d'affichage des notes -->
         <main class="notes-container" id="notesContainer">
             <div class="empty-state" id="emptyState">
@@ -34,14 +35,15 @@
             </div>
         </main>
 
+
         <!-- Bouton d'ajout -->
         <button
             class="add-button"
             id="addButton"
-            aria-label="Ajouter une note"
-        >
+            aria-label="Ajouter une note">
             <i class="fas fa-plus" aria-hidden="true"></i>
         </button>
+
 
         <!-- Modale de sélection du type de note -->
         <div
@@ -49,16 +51,14 @@
             id="typeModal"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="typeModalTitle"
-        >
+            aria-labelledby="typeModalTitle">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 id="typeModalTitle">Nouvelle note</h2>
                     <button
                         class="close-modal"
                         id="closeTypeModal"
-                        aria-label="Fermer la fenêtre"
-                    >
+                        aria-label="Fermer la fenêtre">
                         <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -92,14 +92,14 @@
             </div>
         </div>
 
+
         <!-- Modale de saisie -->
         <div
             class="modal"
             id="formModal"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="formTitle"
-        >
+            aria-labelledby="formTitle">
             <div class="modal-content">
                 <div class="modal-header-form" id="formHeader">
                     <i id="formIcon" aria-hidden="true"></i>
@@ -107,8 +107,7 @@
                     <button
                         class="close-modal-view"
                         id="closeFormModal"
-                        aria-label="Fermer la fenêtre"
-                    >
+                        aria-label="Fermer la fenêtre">
                         <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -116,8 +115,10 @@
                 <form id="noteForm">
                     <!-- Formulaire dynamique -->
                 </form>
+
             </div>
         </div>
+
 
         <!-- Modale de visualisation -->
         <div
@@ -125,8 +126,7 @@
             id="viewModal"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="viewTitle"
-        >
+            aria-labelledby="viewTitle">
             <div class="modal-content">
                 <div class="modal-header-view">
                     <i id="viewIcon" aria-hidden="true"></i>
@@ -134,8 +134,7 @@
                     <button
                         class="close-modal-view"
                         id="closeViewModal"
-                        aria-label="Fermer la fenêtre"
-                    >
+                        aria-label="Fermer la fenêtre">
                         <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -155,8 +154,11 @@
             </div>
         </div>
 
+        
+        <!-- Scripts JavaScript -->
         <script src="scripts.js"></script>
         <script src="darkmode.js"></script>
+
 
     </body>
 </html>
