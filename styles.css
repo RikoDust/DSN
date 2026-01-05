@@ -148,7 +148,7 @@ header.scrolled {
 
 .note-item {
     background: white;
-    padding: 20px;
+    padding: 14px;
     padding-right: 60px;
     border-radius: 12px;
     display: flex;
@@ -191,7 +191,7 @@ header.scrolled {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: /* #5280fc */ #5b29ef ;
+    color:  #5280fc ;
     font-size: 22px;
     cursor: pointer;
     padding: 4px;
@@ -334,7 +334,8 @@ header.scrolled {
 .modal-header-view,
 .modal-header-form {
     background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
-    padding: 15px;
+    padding: 8px;
+    padding-left: 14px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -344,7 +345,7 @@ header.scrolled {
 
 .modal-header-view i,
 .modal-header-form i {
-    font-size: 32px;
+    font-size: 24px;
     color: white;
 }
 
@@ -726,9 +727,11 @@ body.dark-mode .note-item i {
     color: #5280fc;
 }
 
+/*
 body.dark-mode .share-button {
     color: #5b29ef;
 }
+*/
 
 body.dark-mode .share-button:hover {
     background: rgba(86, 246, 228, 0.1);
@@ -744,6 +747,11 @@ body.dark-mode .modal-content {
 
 body.dark-mode .modal-header h2 {
     color: white;
+}
+
+body.dark-mode .modal-header-view{
+    background: none;
+    background-color: #5b29ef;
 }
 
 body.dark-mode .close-modal {
@@ -858,6 +866,6 @@ body.dark-mode .add-button{
     
     .modal-header-view i,
     .modal-header-form i {
-        font-size: 28px;
+        font-size: 20px;
     }
 }
