@@ -727,12 +727,6 @@ body.dark-mode .note-item i {
     color: #5280fc;
 }
 
-/*
-body.dark-mode .share-button {
-    color: #5b29ef;
-}
-*/
-
 body.dark-mode .share-button:hover {
     background: rgba(86, 246, 228, 0.1);
 }
@@ -749,7 +743,8 @@ body.dark-mode .modal-header h2 {
     color: white;
 }
 
-body.dark-mode .modal-header-view{
+body.dark-mode .modal-header-view, 
+body.dark-mode .modal-header-form{
     background: none;
     background-color: #5b29ef;
 }
