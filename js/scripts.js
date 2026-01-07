@@ -3,6 +3,7 @@ let notes = [];
 let currentNoteId = null;
 let currentNoteType = null;
 let scrollPosition = 0; // Pour sauvegarder la position du scroll
+let isDarkMode = false; // Pour le thème
 
 // Éléments DOM
 const header = document.getElementById('header');
@@ -28,6 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
     loadNotes();
     renderNotes();
     setupEventListeners();
+    
+    // Charger le thème sauvegardé
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        isDarkMode = true;
+        document.body.classList.add('dark-mode');
+        const themeIcon = document.querySelector('#themeToggle i');
+        if (themeIcon) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    }
 });
 
 // Configuration des écouteurs d'événements
@@ -45,6 +58,12 @@ function setupEventListeners() {
     addButton.addEventListener('click', () => {
         openModal(typeModal);
     });
+
+    // Bouton de toggle du thème
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
 
     // Fermeture des modales
     document.getElementById('closeTypeModal').addEventListener('click', () => {
@@ -85,6 +104,25 @@ function setupEventListeners() {
     // Actions de visualisation
     document.getElementById('editBtn').addEventListener('click', editNote);
     document.getElementById('deleteBtn').addEventListener('click', deleteNote);
+}
+
+// Toggle du thème
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    const body = document.body;
+    const themeIcon = document.querySelector('#themeToggle i');
+    
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        body.classList.remove('dark-mode');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
 }
 
 // Gestion des modales
@@ -459,23 +497,30 @@ window.viewNote = function(id, maintainScroll = false) {
             break;
 
         case 'contact':
+            const phoneLink = note.phone ? `<a href="tel:${note.phone}" style="color: inherit; text-decoration: underline;">${note.phone}</a>` : 'Non renseigné';
+            const emailLink = note.email ? `<a href="mailto:${note.email}" style="color: inherit; text-decoration: underline;">${note.email}</a>` : 'Non renseigné';
+            
             contentHTML = `
                 <div class="view-field">
                     <label>Téléphone</label>
-                    <p>${note.phone || 'Non renseigné'}</p>
+                    <p>${phoneLink}</p>
                 </div>
                 <div class="view-field">
                     <label>Email</label>
-                    <p>${note.email || 'Non renseigné'}</p>
+                    <p>${emailLink}</p>
                 </div>
             `;
             break;
 
         case 'lieu':
+            const addressLink = note.address ? 
+                `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(note.address)}" target="_blank" style="color: inherit; text-decoration: underline;">${note.address}</a>` 
+                : 'Non renseignée';
+            
             contentHTML = `
                 <div class="view-field">
                     <label>Adresse</label>
-                    <p>${note.address || 'Non renseignée'}</p>
+                    <p>${addressLink}</p>
                 </div>
                 <div class="view-field">
                     <label>Note</label>
