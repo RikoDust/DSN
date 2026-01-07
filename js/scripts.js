@@ -3,7 +3,7 @@ let notes = [];
 let currentNoteId = null;
 let currentNoteType = null;
 let scrollPosition = 0; // Pour sauvegarder la position du scroll
-let isDarkMode = false; // Pour le thème
+
 
 // Éléments DOM
 const header = document.getElementById('header');
@@ -29,18 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadNotes();
     renderNotes();
     setupEventListeners();
-    
-    // Charger le thème sauvegardé
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        isDarkMode = true;
-        document.body.classList.add('dark-mode');
-        const themeIcon = document.querySelector('#themeToggle i');
-        if (themeIcon) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-    }
 });
 
 // Configuration des écouteurs d'événements
