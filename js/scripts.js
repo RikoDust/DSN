@@ -517,19 +517,46 @@ window.viewNote = function(id, maintainScroll = false) {
             `;
             break;
 
-        case 'tache':
-            contentHTML = `
-                <div class="view-field">
-                    <label>Descriptif</label>
-                    <p>${note.description || 'Aucun descriptif'}</p>
-                </div>
-                <div class="view-field">
-                    <label>Date</label>
-                    <p>${formatTaskDate(note.taskDate)}</p>
-                </div>
-            `;
-            break;
-    }
+
+//        case 'tache':
+//            contentHTML = `
+//                <div class="view-field">
+//                    <label>Descriptif</label>
+//                    <p>${note.description || 'Aucun descriptif'}</p>
+//                </div>
+//                <div class="view-field">
+//                    <label>Date</label>
+//                    <p>${formatTaskDate(note.taskDate)}</p>
+//                </div>
+//            `;
+//            break;
+//    }
+
+            case 'tache':
+                contentHTML = `
+                    <div class="view-field">
+                        <label>Descriptif</label>
+                        <p>${note.description || 'Aucun descriptif'}</p>
+                    </div>
+                    <div class="view-field">
+                        <label>Date</label>
+                        <p>${formatTaskDate(note.taskDate)}</p>
+                    </div>
+                    ${note.taskDate ? `
+                    <div class="add-to-calendar">
+                        <button class="btn-calendar" onclick="addToCalendar(${note.id})">
+                            <i class="fas fa-calendar-plus"></i> Ajouter à l'agenda
+                        </button>
+                    </div>
+                    ` : ''}
+                `;
+          break;
+
+        }
+
+
+
+
 
     document.getElementById('viewContent').innerHTML = contentHTML;
     
@@ -633,3 +660,69 @@ function loadNotes() {
         notes = JSON.parse(saved);
     }
 }
+
+
+
+
+
+
+
+// Ajouter une tâche à l'agenda
+window.addToCalendar = function(noteId) {
+    const note = notes.find(n => n.id === noteId);
+    if (!note || !note.taskDate) return;
+    
+    // Créer les dates pour l'événement
+    const eventDate = new Date(note.taskDate);
+    eventDate.setHours(9, 0, 0, 0); // Par défaut à 9h du matin
+    
+    const endDate = new Date(eventDate);
+    endDate.setHours(10, 0, 0, 0); // 1 heure de durée
+    
+    // Formater les dates au format iCalendar (YYYYMMDDTHHMMSS)
+    const formatDateForICal = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}${month}${day}T${hours}${minutes}${seconds}`;
+    };
+    
+    const startDateTime = formatDateForICal(eventDate);
+    const endDateTime = formatDateForICal(endDate);
+    const now = formatDateForICal(new Date());
+    
+    // Créer le contenu du fichier .ics
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Day's Notes//Calendar//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:${startDateTime}
+DTEND:${endDateTime}
+DTSTAMP:${now}
+UID:${note.id}@daysnotes
+CREATED:${now}
+DESCRIPTION:${note.description || ''}
+LAST-MODIFIED:${now}
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:${note.name}
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR`;
+    
+    // Créer un blob et télécharger le fichier
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `${note.name.replace(/[^a-z0-9]/gi, '_')}.ics`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(link.href);
+};
