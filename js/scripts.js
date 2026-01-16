@@ -484,53 +484,60 @@ window.viewNote = function(id, maintainScroll = false) {
             `;
             break;
 
-        case 'contact':
-            const phoneLink = note.phone ? `<a href="tel:${note.phone}" style="color: inherit; text-decoration: underline;">${note.phone}</a>` : 'Non renseigné';
-            const emailLink = note.email ? `<a href="mailto:${note.email}" style="color: inherit; text-decoration: underline;">${note.email}</a>` : 'Non renseigné';
-            
-            contentHTML = `
-                <div class="view-field">
-                    <label>Téléphone</label>
-                    <p>${phoneLink}</p>
-                </div>
-                <div class="view-field">
-                    <label>Email</label>
-                    <p>${emailLink}</p>
-                </div>
-            `;
-            break;
+            case 'contact':
+                const phoneLink = note.phone ? `<a href="tel:${note.phone}" style="color: inherit; text-decoration: none;">${note.phone}</a>` : 'Non renseigné';
+                const emailLink = note.email ? `<a href="mailto:${note.email}" style="color: inherit; text-decoration: none;">${note.email}</a>` : 'Non renseigné';
+                
+                contentHTML = `
+                    <div class="view-field">
+                        <label>Téléphone</label>
+                        <p>${phoneLink}</p>
+                    </div>
+                    <div class="view-field">
+                        <label>Email</label>
+                        <p>${emailLink}</p>
+                    </div>
+                    <div class="contact-actions">
+                        ${note.phone ? `
+                        <button class="btn-contact btn-phone" onclick="window.location.href='tel:${note.phone}'">
+                            <i class="fas fa-phone"></i> Appeler
+                        </button>
+                        ` : ''}
+                        ${note.email ? `
+                        <button class="btn-contact btn-email" onclick="window.location.href='mailto:${note.email}'">
+                            <i class="fas fa-envelope"></i> Envoyer un mail
+                        </button>
+                        ` : ''}
+                    </div>
+                `;
+                break;
 
-        case 'lieu':
-            const addressLink = note.address ? 
-                `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(note.address)}" target="_blank" style="color: inherit; text-decoration: underline;">${note.address}</a>` 
-                : 'Non renseignée';
-            
-            contentHTML = `
-                <div class="view-field">
-                    <label>Adresse</label>
-                    <p>${addressLink}</p>
-                </div>
-                <div class="view-field">
-                    <label>Note</label>
-                    <p>${note.note || 'Aucune note'}</p>
-                </div>
-            `;
-            break;
+            case 'lieu':
+                const addressLink = note.address ? 
+                    `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(note.address)}" target="_blank" style="color: inherit; text-decoration: none;">${note.address}</a>` 
+                    : 'Non renseignée';
+                
+                contentHTML = `
+                    <div class="view-field">
+                        <label>Adresse</label>
+                        <p>${addressLink}</p>
+                    </div>
+                    <div class="view-field">
+                        <label>Note</label>
+                        <p>${note.note || 'Aucune note'}</p>
+                    </div>
+                    ${note.address ? `
+                    <div class="add-to-calendar">
+                        <button class="btn-calendar" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(note.address)}', '_blank')">
+                            <i class="fas fa-map-marked-alt"></i> Ouvrir dans Maps
+                        </button>
+                    </div>
+                    ` : ''}
+                `;
+                break;
 
 
-//        case 'tache':
-//            contentHTML = `
-//                <div class="view-field">
-//                    <label>Descriptif</label>
-//                    <p>${note.description || 'Aucun descriptif'}</p>
-//                </div>
-//                <div class="view-field">
-//                    <label>Date</label>
-//                    <p>${formatTaskDate(note.taskDate)}</p>
-//                </div>
-//            `;
-//            break;
-//    }
+
 
             case 'tache':
                 contentHTML = `

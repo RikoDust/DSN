@@ -583,6 +583,99 @@ form {
     padding-right: 5px;
 }
 
+
+/* Boutons de contact */
+.contact-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #3d3d5c;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-contact {
+    background: #5280fc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-contact:hover {
+    background: #4169db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 128, 252, 0.3);
+}
+
+.btn-phone {
+    background: #34c759;
+}
+
+.btn-phone:hover {
+    background: #2fb350;
+}
+
+.btn-email {
+    background: #5280fc;
+}
+
+.btn-email:hover {
+    background: #4169db;
+}
+
+
+/* Bouton ajouter à l'agenda */
+.add-to-calendar {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #3d3d5c;
+}
+
+.btn-calendar {
+    background: #5280fc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-calendar:hover {
+    background: #4169db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 128, 252, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Style personnalisé pour la scrollbar */
 .view-field ul::-webkit-scrollbar {
     width: 8px;
@@ -683,39 +776,7 @@ form {
 
 
 
-/* Bouton ajouter à l'agenda */
-.add-to-calendar {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-}
 
-.btn-calendar {
-    background: #5280fc;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    justify-content: center;
-}
-
-.btn-calendar:hover {
-    background: #4169db;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(82, 128, 252, 0.3);
-}
-
-body.dark-mode .add-to-calendar {
-    border-top-color: #3d3d5c;
-}
 
 
 
