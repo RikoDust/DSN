@@ -1,3 +1,6 @@
+// FILTRE DE NOTE PAR TYPE
+
+
 // Système de filtrage des notes
 let currentFilter = 'all';
 

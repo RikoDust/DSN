@@ -833,7 +833,7 @@ footer {
 
 /* Bouton "All" */
 .filter-select button:first-child {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -856,6 +856,7 @@ footer {
 
 .dark-mode .filter-select button.active {
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+    color: #56f6e4;
 }
 
 /* Animation au tap (mobile) */

@@ -1,3 +1,6 @@
+// DARKMODE
+
+
 // Ajouter au début du fichier, après les autres variables
 let isDarkMode = false;
 
