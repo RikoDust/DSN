@@ -1077,7 +1077,7 @@ body.dark-mode .view-actions {
 }
 
 body.dark-mode .add-button{
-    background-color: #2d2d44;
+    background-color:/* #5280fc*/ #4169db;
     box-shadow: 0 2px 12px rgba(102, 126, 234, 0.25);
 }
 
