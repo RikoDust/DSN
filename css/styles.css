@@ -822,7 +822,7 @@ footer {
 /* Boutons de filtre */
 .filter-select button {
     flex: 1;
-    max-width: 80px;
+    max-width: 90px;
     padding: 12px 16px;
     background: transparent;
     border: none;
@@ -840,7 +840,7 @@ footer {
 /* Bouton "All" */
 .filter-select button:first-child {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -856,7 +856,7 @@ footer {
     opacity: 1;
     background: var(--primary-color);
     color: #5280fc;
-    font-weight: bold;
+    font-weight: 550;
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.5);
 }
 
@@ -900,7 +900,7 @@ main {
     }
 
     .footer-content {
-        gap: 10px;
+        gap: 1.2rem;
         padding: 0 4px;
     }
 
