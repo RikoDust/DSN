@@ -239,32 +239,11 @@ header.scrolled {
 }
 
 
-/* Bouton d'ajout */
-.add-button {
-    position: fixed;
-    bottom: max(100px, env(safe-area-inset-bottom));
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    border: none ;
-    border-radius: 12px;
-    background-color: #5280fc;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
-    z-index: 99;
-    transition: all 0.3s ease;
-}
 
-.add-button:hover {
-    transform: translateX(-50%) scale(1.1);
-}
 
-.add-button:active {
-    transform: translateX(-50%) scale(0.95);
-}
+
+
+
 
 /* Modales */
 .modal {
@@ -793,8 +772,8 @@ footer {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
 }
 
 /* Footer en mode sombre */
@@ -803,14 +782,40 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.footer-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
 /* Container des boutons de filtre */
 .filter-select {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    max-width: 600px;
-    margin: 0 auto;
+    gap: 2rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    margin-right: 0;
+}
+
+/* Trait de séparation en mode sombre */
+.dark-mode .filter-select {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Bouton d'ajout */
+.add-button {
+    width: 80px;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    background-color: #5280fc;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
 }
 
 /* Boutons de filtre */
@@ -849,14 +854,14 @@ footer {
 .filter-select button.active {
     opacity: 1;
     background: var(--primary-color);
-    color: #5b29ef;
+    color: #5280fc;
     font-weight: bold;
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.5);
 }
 
 .dark-mode .filter-select button.active {
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
-    color: #56f6e4;
+    color: #5280fc;
 }
 
 /* Animation au tap (mobile) */
@@ -866,23 +871,61 @@ footer {
 
 /* Espacement pour le contenu principal */
 main {
-    padding-bottom: 100px; /* Éviter que le footer cache le contenu */
+    padding-bottom: 100px;
 }
 
+
+
+
+
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+.filter-select {
+    gap: 1rem;
+    }
+}
+
+@media (max-width: 610px) {
+.filter-select {
+    gap: 0.5rem;
+    }
+}
+
+
+/* Responsive */
+@media (max-width: 560px) {
+    footer {
+        padding: 12px 4px;
+    }
+
+    .footer-content {
+        gap: 10px;
+        padding: 0 4px;
+    }
+
     .filter-select {
-        gap: 8px;
+        gap: 5px;
+        padding-right: 8px;
     }
     
     .filter-select button {
-        max-width: 60px;
-        padding: 10px 12px;
-        font-size: 16px;
+        max-width: 50px;
+        min-width: 35px;
+        padding: 8px 4px;
+        font-size: 22px;
     }
     
     .filter-select button:first-child {
-        font-size: 12px;
+        font-size: 11px;
+        max-width: 40px;
+        padding: 8px 2px;
+    }
+
+    .add-button {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        font-size: 24px;
     }
 }
 
