@@ -45,6 +45,16 @@ header.scrolled {
     gap: 8px;
 }
 
+.logo-title a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+
 .logo_title {
     width: 50px;
 }
