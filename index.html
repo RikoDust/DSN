@@ -46,6 +46,8 @@
 
 
         <!-- Zone d'affichage des notes -->
+
+        <!--
         <main class="notes-container" id="notesContainer">
             <div class="empty-state" id="emptyState">
                 <i class="fas fa-sticky-note" aria-hidden="true"></i>
@@ -53,6 +55,14 @@
                 <p class="empty-subtitle">Cliquez sur + pour créer votre première note</p>
             </div>
         </main>
+        -->
+
+        <main class="notes-container" id="notesContainer"></main>
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-sticky-note"></i>
+            <p>Aucune note pour le moment</p>
+            <p class="empty-subtitle">Cliquez sur + pour créer votre première note</p>
+        </div>
 
 
         <!-- Bouton d'ajout --> <!--
@@ -199,9 +209,7 @@
 
         
         <!-- Scripts JavaScript -->
-        <script src="js/scripts.js"></script>
-        <script src="js/filter.js"></script>
-        <script src="js/darkmode.js"></script>
+        <script type="module" src="js/scripts.js"></script>
 
 
     </body>
