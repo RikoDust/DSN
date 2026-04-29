@@ -11,6 +11,7 @@ import { showNoteForm }                                 from './forms.js';
 import { editNote, deleteNote }                         from './notes.js';
 import { initTheme, toggleTheme }                       from './darkmode.js';
 import { initFilterSystem }                             from './filters.js';
+import { exportNotes, importNotes }                     from './importexport.js';
 
 // ── Éléments DOM ──────────────────────────────────────────────
 
@@ -80,4 +81,16 @@ function setupEventListeners() {
     // Boutons de la modale de visualisation
     document.getElementById('editBtn').addEventListener('click', editNote);
     document.getElementById('deleteBtn').addEventListener('click', deleteNote);
+
+
+    document.getElementById('exportLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    exportNotes();
+});
+
+document.getElementById('importLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    importNotes();
+});
+
 }

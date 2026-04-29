@@ -67,7 +67,10 @@ header.scrolled {
     white-space: nowrap;
 }
 
-/* Burger button */
+/* ============================================================
+   Burger button
+   ============================================================ */
+
 .burger-btn {
     background: none;
     border: none;
@@ -85,7 +88,7 @@ header.scrolled {
 }
 
 .burger-btn:hover {
-    background: #16213e;
+    background: #f0f4ff;
 }
 
 .burger-btn span {
@@ -98,7 +101,7 @@ header.scrolled {
     transform-origin: center;
 }
 
-/* Burger open state — croix */
+/* Croix à l'ouverture */
 .burger-btn.open span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
@@ -110,12 +113,15 @@ header.scrolled {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Dropdown menu */
+/* ============================================================
+   Dropdown menu — thème clair (défaut)
+   ============================================================ */
+
 .burger-menu {
     position: absolute;
     top: calc(100% + 8px);
     right: 30px;
-    background: white;
+    background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
     min-width: 220px;
@@ -146,7 +152,33 @@ header.scrolled {
     color: #333;
 }
 
-/* Switch toggle */
+/* Liens */
+.burger-menu-link {
+    display: block;
+    padding: 10px 18px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.burger-menu-link:hover {
+    background: #f0f4ff;
+    color: #5280fc;
+}
+
+/* Séparateur */
+.burger-menu-divider {
+    border: none;
+    border-top: 1px solid #5280fc;
+    margin: 6px 0;
+    opacity: 0.4;
+}
+
+/* ============================================================
+   Switch toggle
+   ============================================================ */
+
 .theme-switch {
     position: relative;
     display: inline-block;
@@ -179,7 +211,7 @@ header.scrolled {
     background: white;
     border-radius: 50%;
     transition: transform 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .theme-switch input:checked + .theme-switch-track {
@@ -190,29 +222,10 @@ header.scrolled {
     transform: translateX(18px);
 }
 
-/* Liens du menu */
-.burger-menu-link {
-    display: block;
-    padding: 10px 18px;
-    font-size: 14px;
-    color: #333;
-    text-decoration: none;
-    transition: background 0.15s ease;
-}
+/* ============================================================
+   Overlay (ferme le menu au clic extérieur)
+   ============================================================ */
 
-.burger-menu-link:hover {
-    background: #f0f4ff;
-    color: #5280fc;
-}
-
-/* Séparateur */
-.burger-menu-divider {
-    border: none;
-    border-top: 1px solid #eee;
-    margin: 6px 0;
-}
-
-/* Overlay (ferme le menu au clic extérieur) */
 .burger-overlay {
     display: none;
     position: fixed;
@@ -224,12 +237,36 @@ header.scrolled {
     display: block;
 }
 
+/* ============================================================
+   Burger — thème sombre
+   ============================================================ */
 
+body.dark-mode .burger-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
 
+body.dark-mode .burger-menu {
+    background: #2d2d44;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
 
+body.dark-mode .burger-menu-label {
+    color: #ffffff;
+}
 
+body.dark-mode .burger-menu-link {
+    color: #ffffff;
+}
 
+body.dark-mode .burger-menu-link:hover {
+    background: rgba(82, 128, 252, 0.15);
+    color: #5280fc;
+}
 
+body.dark-mode .burger-menu-divider {
+    border-top-color: #5280fc;
+    opacity: 0.6;
+}
 
 /* Zone d'affichage des notes */
 .notes-container {
@@ -284,7 +321,6 @@ header.scrolled {
     border-radius: 2px;
 }
 
-
 /* Items de notes */
 .note-item-wrapper {
     position: relative;
@@ -303,13 +339,6 @@ header.scrolled {
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
-/*
-.note-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-    */
 
 .note-item i {
     font-size: 24px;
@@ -336,7 +365,7 @@ header.scrolled {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color:  #5280fc ;
+    color: #5280fc;
     font-size: 22px;
     cursor: pointer;
     padding: 4px;
@@ -383,13 +412,6 @@ header.scrolled {
     opacity: 1;
 }
 
-
-
-
-
-
-
-
 /* Modales */
 .modal {
     display: none;
@@ -411,12 +433,8 @@ header.scrolled {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .modal-content {
@@ -706,7 +724,6 @@ form {
     padding-right: 5px;
 }
 
-
 /* Boutons de contact */
 .contact-actions {
     margin-top: 20px;
@@ -755,7 +772,6 @@ form {
     background: #4169db;
 }
 
-
 /* Bouton ajouter à l'agenda */
 .add-to-calendar {
     margin-top: 20px;
@@ -785,19 +801,6 @@ form {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(82, 128, 252, 0.3);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Style personnalisé pour la scrollbar */
 .view-field ul::-webkit-scrollbar {
@@ -890,22 +893,6 @@ form {
     background: #ee384a;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /****** Footer de filtrage ******/
 footer {
     position: fixed;
@@ -928,7 +915,7 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer-content{
+.footer-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1020,25 +1007,19 @@ main {
     padding-bottom: 100px;
 }
 
-
-
-
-
 /* Responsive */
 @media (max-width: 768px) {
-.filter-select {
-    gap: 1rem;
+    .filter-select {
+        gap: 1rem;
     }
 }
 
 @media (max-width: 610px) {
-.filter-select {
-    gap: 0.5rem;
+    .filter-select {
+        gap: 0.5rem;
     }
 }
 
-
-/* Responsive */
 @media (max-width: 560px) {
     footer {
         padding: 12px 4px;
@@ -1053,14 +1034,14 @@ main {
         gap: 5px;
         padding-right: 8px;
     }
-    
+
     .filter-select button {
         max-width: 50px;
         min-width: 35px;
         padding: 8px 4px;
         font-size: 22px;
     }
-    
+
     .filter-select button:first-child {
         font-size: 11px;
         max-width: 40px;
@@ -1075,30 +1056,10 @@ main {
     }
 }
 
+/* ============================================================
+   DARK MODE
+   ============================================================ */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* DARK MODE */
 body.dark-mode {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
@@ -1114,14 +1075,6 @@ body.dark-mode header.scrolled {
 
 body.dark-mode .logo-title h1 {
     color: #5280fc;
-}
-
-body.dark-mode .theme-toggle {
-    color: #5280fc;
-}
-
-body.dark-mode .theme-toggle:hover {
-    background: rgba(86, 246, 228, 0.1);
 }
 
 body.dark-mode .empty-state {
@@ -1157,8 +1110,8 @@ body.dark-mode .modal-header h2 {
     color: white;
 }
 
-body.dark-mode .modal-header-view, 
-body.dark-mode .modal-header-form{
+body.dark-mode .modal-header-view,
+body.dark-mode .modal-header-form {
     background: none;
     background-color: #5b29ef;
 }
@@ -1221,19 +1174,38 @@ body.dark-mode .view-actions {
     border-top-color: #3d3d5c;
 }
 
-body.dark-mode .add-button{
-    background-color:/* #5280fc*/ #4169db;
+body.dark-mode .add-button {
+    background-color: #4169db;
     box-shadow: 0 2px 12px rgba(102, 126, 234, 0.25);
 }
 
+/* Burger — thème sombre */
+body.dark-mode .burger-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
 
+body.dark-mode .burger-menu {
+    background: #2d2d44;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
 
+body.dark-mode .burger-menu-label {
+    color: #ffffff;
+}
 
+body.dark-mode .burger-menu-link {
+    color: #ffffff;
+}
 
+body.dark-mode .burger-menu-link:hover {
+    background: rgba(82, 128, 252, 0.15);
+    color: #5280fc;
+}
 
-
-
-
+body.dark-mode .burger-menu-divider {
+    border-top-color: #5280fc;
+    opacity: 0.6;
+}
 
 /* Responsive */
 @media (max-width: 480px) {
@@ -1241,7 +1213,7 @@ body.dark-mode .add-button{
         font-size: 30px;
     }
 
-    .header-content{
+    .header-content {
         padding: 4px;
     }
 
@@ -1267,12 +1239,12 @@ body.dark-mode .add-button{
         right: 10px;
         font-size: 20px;
     }
-    
+
     .modal-header-view h2,
     .modal-header-form h2 {
         font-size: 18px;
     }
-    
+
     .modal-header-view i,
     .modal-header-form i {
         font-size: 20px;
