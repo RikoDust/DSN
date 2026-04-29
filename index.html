@@ -28,8 +28,8 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
 
-
-        <!-- Header -->
+        
+        <!-- Header --> <!--
         <header id="header">
             <div class="header-content">
                 <div class="logo-title">
@@ -43,6 +43,50 @@
                 </button>
             </div>
         </header>
+    -->
+
+
+        <!-- Header -->
+        <header id="header">
+        <div class="header-content">
+        <div class="logo-title">
+            <a href="https://xn--emdev-dveloppement-web-h8b.fr/daysnotes.html#feedback" target="_blank" rel="noopener noreferrer">
+                <img src="assets/img/DSN_logo.png" alt="Logo Day's Notes" class="logo_title">
+                <h1>Day's Notes</h1>
+            </a>
+        </div>
+
+        <!-- Burger button -->
+        <button class="burger-btn" id="burgerBtn" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div class="burger-menu" id="burgerMenu" aria-hidden="true">
+            <div class="burger-menu-row">
+                <span class="burger-menu-label">Mode sombre</span>
+                <label class="theme-switch" aria-label="Changer de thème">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="theme-switch-track"></span>
+                </label>
+            </div>
+            <a href="https://VOTRE_LIEN_ICI" target="_blank" rel="noopener noreferrer" class="burger-menu-link">
+                Donner son avis
+            </a>
+            <hr class="burger-menu-divider">
+            <a href="#" class="burger-menu-link" id="importLink">Importer</a>
+            <a href="#" class="burger-menu-link" id="exportLink">Exporter</a>
+        </div>
+
+        <!-- Overlay to close menu -->
+        <div class="burger-overlay" id="burgerOverlay"></div>
+    </div>
+    </header>
+
+
+
 
 
         <!-- Zone d'affichage des notes -->
@@ -210,7 +254,6 @@
         
         <!-- Scripts JavaScript -->
         <script type="module" src="js/scripts.js"></script>
-
 
     </body>
 </html>

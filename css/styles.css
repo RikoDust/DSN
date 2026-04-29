@@ -34,9 +34,10 @@ header.scrolled {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 800px; /* Même largeur que les notes */
+    max-width: 800px;
     padding: 10px 30px;
     margin: 0 auto;
+    position: relative;
 }
 
 .logo-title {
@@ -54,7 +55,6 @@ header.scrolled {
     cursor: pointer;
 }
 
-
 .logo_title {
     width: 50px;
 }
@@ -67,26 +67,161 @@ header.scrolled {
     white-space: nowrap;
 }
 
-/* Bouton de toggle du thème */
-.theme-toggle {
+/* Burger button */
+.burger-btn {
     background: none;
     border: none;
-    font-size: 20px;
-    color: #5280fc;
     cursor: pointer;
     padding: 8px;
-    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
+    border-radius: 12px;
+    transition: background 0.2s ease;
 }
 
-.theme-toggle:hover {
-    background: #f8f9ff;
-    transform: scale(1.1);
+.burger-btn:hover {
+    background: #16213e;
+}
+
+.burger-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #5280fc;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Burger open state — croix */
+.burger-btn.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.burger-btn.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.burger-btn.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Dropdown menu */
+.burger-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    min-width: 220px;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 200;
+}
+
+.burger-menu.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+/* Ligne darkmode */
+.burger-menu-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+}
+
+.burger-menu-label {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Switch toggle */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-switch-track {
+    position: absolute;
+    inset: 0;
+    background: #d0d8ff;
+    border-radius: 24px;
+    transition: background 0.3s ease;
+}
+
+.theme-switch-track::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.theme-switch input:checked + .theme-switch-track {
+    background: #5280fc;
+}
+
+.theme-switch input:checked + .theme-switch-track::before {
+    transform: translateX(18px);
+}
+
+/* Liens du menu */
+.burger-menu-link {
+    display: block;
+    padding: 10px 18px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.burger-menu-link:hover {
+    background: #f0f4ff;
+    color: #5280fc;
+}
+
+/* Séparateur */
+.burger-menu-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 6px 0;
+}
+
+/* Overlay (ferme le menu au clic extérieur) */
+.burger-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+}
+
+.burger-overlay.open {
+    display: block;
 }
 
 
