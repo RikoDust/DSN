@@ -162,6 +162,12 @@ header.scrolled {
     transition: background 0.15s ease, color 0.15s ease;
 }
 
+.burger-menu-link i{
+    margin-right: 10px;
+}
+
+
+
 .burger-menu-link:hover {
     background: #f0f4ff;
     color: #5280fc;
