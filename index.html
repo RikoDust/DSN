@@ -79,7 +79,35 @@
             <a href="#" class="burger-menu-link" id="importLink"><i class="fa-download fa-solid"></i>Importer</a>
             <a href="#" class="burger-menu-link" id="exportLink"><i class="fa-upload fa-solid"></i>Exporter</a>
             <hr class="burger-menu-divider">
-            <a href="https://xn--emdev-dveloppement-web-h8b.fr" target="_blank" rel="noopener noreferrer" class="burger-menu-link" ><i class="fa-globe fa-solid"></i>EmDev</a>
+            <a href="https://xn--emdev-dveloppement-web-h8b.fr" target="_blank" rel="noopener noreferrer" class="burger-menu-link"><i class="fa-globe fa-solid"></i>EmDev</a>
+        </div>
+
+        <!-- Modale de confirmation d'import -->
+        <div class="modal" id="importConfirmModal">
+            <div class="modal-content import-confirm-modal-content">
+                <div class="modal-header-form">
+                    <i class="fa-solid fa-file-import"></i>
+                    <h2>Import de données</h2>
+                    <button class="close-modal-view" id="closeImportModal" aria-label="Fermer">&#x2715;</button>
+                </div>
+                <div class="import-confirm-body">
+                    <div class="import-warning-title">
+                        <i class="fa-solid fa-triangle-exclamation import-warning-icon"></i>
+                        <span>Attention</span>
+                    </div>
+                    <p class="import-warning-message">
+                        Tout import de données effacera et remplacera l'ensemble des données actuelles.
+                    </p>
+                </div>
+                <div class="import-confirm-actions">
+                    <button class="btn btn-secondary import-cancel-btn" id="importCancelBtn">
+                        <i class="fa-solid fa-xmark"></i> Annuler
+                    </button>
+                    <button class="btn btn-import-confirm" id="importConfirmBtn">
+                        <i class="fa-solid fa-download"></i> Importer
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Overlay to close menu -->

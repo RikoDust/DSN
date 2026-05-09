@@ -11,7 +11,7 @@ import { showNoteForm }                                 from './forms.js';
 import { editNote, deleteNote }                         from './notes.js';
 import { initTheme, toggleTheme }                       from './darkmode.js';
 import { initFilterSystem }                             from './filters.js';
-import { exportNotes, importNotes }                     from './importexport.js';
+import { exportNotes, importNotes, initImportModal }    from './importexport.js';
 
 // ── Éléments DOM ──────────────────────────────────────────────
 
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderNotes();
     initTheme();
     initFilterSystem();
+    initImportModal();
     setupEventListeners();
 });
 

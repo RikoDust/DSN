@@ -6,30 +6,42 @@ import { state }       from './state.js';
 import { saveNotes }   from './storage.js';
 import { renderNotes } from './render.js';
 
-const STORAGE_KEY = 'daysNotes';
-
 // ── Export ────────────────────────────────────────────────────
 
 export function exportNotes() {
-    const data     = JSON.stringify(state.notes, null, 2);
-    const blob     = new Blob([data], { type: 'application/json' });
-    const url      = URL.createObjectURL(blob);
-    const a        = document.createElement('a');
-    const date     = new Date().toISOString().slice(0, 10); // ex: 2025-04-29
+    const data = JSON.stringify(state.notes, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
 
-    a.href         = url;
-    a.download     = `daysnotes-backup-${date}.json`;
+    a.href     = url;
+    a.download = `daysnotes-backup-${date}.json`;
     a.click();
 
     URL.revokeObjectURL(url);
 }
 
+// ── Helpers burger ────────────────────────────────────────────
+
+function closeBurgerMenu() {
+    document.getElementById('burgerMenu')?.classList.remove('open');
+    document.getElementById('burgerOverlay')?.classList.remove('open');
+    document.getElementById('burgerBtn')?.classList.remove('open');
+    document.getElementById('burgerBtn')?.setAttribute('aria-expanded', false);
+    document.getElementById('burgerMenu')?.setAttribute('aria-hidden', true);
+}
+
 // ── Import ────────────────────────────────────────────────────
 
-export function importNotes() {
-    const input    = document.createElement('input');
-    input.type     = 'file';
-    input.accept   = '.json';
+function closeImportModal() {
+    document.getElementById('importConfirmModal').classList.remove('active');
+}
+
+function triggerFileImport() {
+    const input  = document.createElement('input');
+    input.type   = 'file';
+    input.accept = '.json';
 
     input.addEventListener('change', () => {
         const file = input.files[0];
@@ -60,4 +72,28 @@ export function importNotes() {
     });
 
     input.click();
+}
+
+export function initImportModal() {
+    const modal      = document.getElementById('importConfirmModal');
+    const closeBtn   = document.getElementById('closeImportModal');
+    const cancelBtn  = document.getElementById('importCancelBtn');
+    const confirmBtn = document.getElementById('importConfirmBtn');
+
+    closeBtn.addEventListener('click', closeImportModal);
+    cancelBtn.addEventListener('click', closeImportModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeImportModal();
+    });
+
+    confirmBtn.addEventListener('click', () => {
+        closeImportModal();
+        triggerFileImport();
+    });
+}
+
+export function importNotes() {
+    closeBurgerMenu();   // ← ferme l'overlay burger qui bloquait les clics
+    document.getElementById('importConfirmModal').classList.add('active');
 }
