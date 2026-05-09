@@ -1,0 +1,557 @@
+/*** MODALS — Modales, formulaires, boutons, visualisation ***/
+
+/* --- Structure de base des modales --- */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- En-têtes des modales --- */
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Header de visualisation et formulaire avec couleur */
+.modal-header-view,
+.modal-header-form {
+    background: linear-gradient(135deg, #56f6e4 0%, #5b29ef 100%);
+    padding: 8px;
+    padding-left: 14px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 16px 16px 0 0;
+    position: relative;
+}
+
+.modal-header-view i,
+.modal-header-form i {
+    font-size: 24px;
+    color: white;
+}
+
+.modal-header-view h2,
+.modal-header-form h2 {
+    flex: 1;
+    font-size: 22px;
+    color: white;
+    margin: 0;
+}
+
+/* Boutons de fermeture */
+.close-modal,
+.close-modal-view {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.close-modal-view {
+    color: white;
+}
+
+.close-modal-view:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+
+/* --- Sélection du type de note --- */
+
+.note-types {
+    padding: 25px;
+    display: grid;
+    gap: 12px;
+}
+
+.note-type-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.note-type-item:hover {
+    border-color: #5280fc;
+    background: #f8f9ff;
+    transform: translateX(5px);
+}
+
+.note-type-item i {
+    font-size: 24px;
+    color: #5280fc;
+}
+
+.note-type-item span {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+
+/* --- Formulaires --- */
+
+form {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #5280fc;
+    background: #f8f9ff;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Liste items */
+.list-items {
+    margin-top: 15px;
+}
+
+.list-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.list-item input {
+    flex: 1;
+}
+
+.remove-item {
+    background: #ff4757;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.remove-item:hover {
+    background: #ee384a;
+    transform: scale(1.05);
+}
+
+.add-item {
+    background: #5280fc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.add-item:hover {
+    background: #5280fc;
+}
+
+
+/* --- Boutons génériques --- */
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: #5b29ef;
+    color: white;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e5e5e5;
+}
+
+
+/* --- Zone de visualisation --- */
+
+#viewContent {
+    padding: 25px;
+}
+
+.view-field {
+    margin-bottom: 20px;
+}
+
+.view-field label {
+    display: block;
+    font-weight: 600;
+    color: #5280fc;
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.view-field p {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.view-field ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar personnalisée */
+.view-field ul::-webkit-scrollbar {
+    width: 8px;
+}
+
+.view-field ul::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.view-field ul::-webkit-scrollbar-thumb {
+    background: #5280fc;
+    border-radius: 10px;
+}
+
+.view-field ul::-webkit-scrollbar-thumb:hover {
+    background: #4169db;
+}
+
+.view-field li {
+    padding: 12px 15px;
+    color: #333;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f9ff;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.view-field li:hover {
+    background: #eef0ff;
+}
+
+.view-field li .item-text {
+    flex: 1;
+}
+
+.view-field li.checked .item-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.view-field li .check-icon {
+    color: #4caf50;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.view-field li.checked .check-icon {
+    opacity: 1;
+}
+
+/* Actions modifier / supprimer */
+.view-actions {
+    display: flex;
+    gap: 10px;
+    padding: 20px 25px;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap;
+}
+
+.btn-edit {
+    background-color: #5b29ef;
+    color: white;
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-delete {
+    background: #ff4757;
+    color: white;
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    background: #ee384a;
+}
+
+
+/* --- Boutons de contact --- */
+
+.contact-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #3d3d5c;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-contact {
+    background: #5280fc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-contact:hover {
+    background: #4169db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 128, 252, 0.3);
+}
+
+.btn-phone {
+    background: #34c759;
+}
+
+.btn-phone:hover {
+    background: #2fb350;
+}
+
+.btn-email {
+    background: #5280fc;
+}
+
+.btn-email:hover {
+    background: #4169db;
+}
+
+
+/* --- Bouton agenda --- */
+
+.add-to-calendar {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #3d3d5c;
+}
+
+.btn-calendar {
+    background: #5280fc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-calendar:hover {
+    background: #4169db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 128, 252, 0.3);
+}
+
+
+/* --- Modale d'import --- */
+
+.import-confirm-modal-content {
+    max-width: 420px;
+}
+
+.import-confirm-body {
+    padding: 28px 25px 16px;
+}
+
+.import-warning-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.import-warning-title span {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e67e22;
+}
+
+.import-warning-icon {
+    font-size: 20px;
+    color: #e67e22;
+}
+
+.import-warning-message {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    padding-left: 2px;
+}
+
+.import-confirm-actions {
+    display: flex;
+    gap: 12px;
+    padding: 16px 25px 24px;
+}
+
+.import-confirm-actions .btn {
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-import-confirm {
+    background-color: #5b29ef;
+    color: white;
+}
+
+.btn-import-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 41, 239, 0.35);
+}

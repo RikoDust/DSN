@@ -1,0 +1,92 @@
+/*** RESPONSIVE — Media queries ***/
+
+@media (max-width: 768px) {
+    .filter-select {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 610px) {
+    .filter-select {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 560px) {
+    footer {
+        padding: 12px 4px;
+    }
+
+    .footer-content {
+        gap: 1.2rem;
+        padding: 0 4px;
+    }
+
+    .filter-select {
+        gap: 5px;
+        padding-right: 8px;
+    }
+
+    .filter-select button {
+        max-width: 50px;
+        min-width: 35px;
+        padding: 8px 4px;
+        font-size: 22px;
+    }
+
+    .filter-select button:first-child {
+        font-size: 11px;
+        max-width: 40px;
+        padding: 8px 2px;
+    }
+
+    .add-button {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-title h1 {
+        font-size: 30px;
+    }
+
+    .header-content {
+        padding: 4px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        margin: 10px;
+    }
+
+    .view-actions {
+        flex-direction: column;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        width: 100%;
+    }
+
+    .note-item {
+        padding-right: 50px;
+    }
+
+    .share-button {
+        right: 10px;
+        font-size: 20px;
+    }
+
+    .modal-header-view h2,
+    .modal-header-form h2 {
+        font-size: 18px;
+    }
+
+    .modal-header-view i,
+    .modal-header-form i {
+        font-size: 20px;
+    }
+}

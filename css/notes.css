@@ -1,0 +1,156 @@
+/*** NOTES — Zone d'affichage, items, groupes, empty state ***/
+
+/* Zone d'affichage des notes */
+.notes-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main {
+    padding-bottom: 100px;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: white;
+}
+
+.empty-state i {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.empty-state p {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.empty-subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+
+/* --- Groupes de notes par mois --- */
+
+.month-group {
+    margin-bottom: 30px;
+}
+
+.month-label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.month-label::before {
+    content: '';
+    width: 4px;
+    height: 30px;
+    background: white;
+    border-radius: 2px;
+}
+
+
+/* --- Items de notes --- */
+
+.note-item-wrapper {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.note-item {
+    background: white;
+    padding: 14px;
+    padding-right: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.note-item i {
+    font-size: 24px;
+    color: #5280fc;
+    min-width: 24px;
+}
+
+.note-item-content {
+    flex: 1;
+}
+
+.note-item span {
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+    display: block;
+}
+
+
+/* --- Bouton de partage --- */
+
+.share-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #5280fc;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.share-button:hover {
+    background: #f8f9ff;
+}
+
+.share-button .share-tooltip {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #5280fc;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    margin-right: 10px;
+}
+
+.share-button .share-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid #5280fc;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+.share-button:hover .share-tooltip {
+    opacity: 1;
+}
