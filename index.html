@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Day's Notes</title>
 
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
         <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="icon" href="assets/img/DSN_logo.png" type="image/png">
@@ -18,34 +17,16 @@
         })(window,document,'script','dataLayer','GTM-NCP9D584');
         </script>
         <!-- End Google Tag Manager -->
-
     </head>
+
 
     <body>
 
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCP9D584"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
 
         
-        <!-- Header --> <!--
-        <header id="header">
-            <div class="header-content">
-                <div class="logo-title">
-                    <a href="https://xn--emdev-dveloppement-web-h8b.fr/daysnotes.html#feedback" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/DSN_logo.png" alt="Logo Day's Notes" class="logo_title">
-                        <h1>Day's Notes</h1>
-                    </a>
-                </div>
-                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </header>
-    -->
-
-
         <!-- Header -->
         <header id="header">
         <div class="header-content">
@@ -67,8 +48,8 @@
         <div class="burger-menu" id="burgerMenu" aria-hidden="true">
             <div class="burger-menu-row">
                 <span class="burger-menu-label">Mode sombre</span>
-                <label class="theme-switch" aria-label="Changer de thème">
-                    <input type="checkbox" id="themeToggle">
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeToggle" aria-label="Changer de thème">
                     <span class="theme-switch-track"></span>
                 </label>
             </div>
@@ -117,37 +98,14 @@
 
 
 
-
-
-        <!-- Zone d'affichage des notes -->
-
-        <!--
-        <main class="notes-container" id="notesContainer">
-            <div class="empty-state" id="emptyState">
-                <i class="fas fa-sticky-note" aria-hidden="true"></i>
-                <p>Aucune note pour le moment</p>
-                <p class="empty-subtitle">Cliquez sur + pour créer votre première note</p>
-            </div>
-        </main>
-        -->
-
         <main class="notes-container" id="notesContainer"></main>
+
         <div class="empty-state" id="emptyState">
             <i class="fas fa-sticky-note"></i>
             <p>Aucune note pour le moment</p>
             <p class="empty-subtitle">Cliquez sur + pour créer votre première note</p>
         </div>
 
-
-        <!-- Bouton d'ajout --> <!--
-        <button
-            class="add-button"
-            id="addButton"
-            aria-label="Ajouter une note">
-            <i class="fas fa-plus" aria-hidden="true"></i>
-        </button>
-
-    -->
         
         <!-- Zone de filtre  -->
         <footer>
@@ -166,9 +124,6 @@
             </div>
             </div>
         </footer>
-
-        
-
 
 
 
@@ -257,7 +212,7 @@
             <div class="modal-content">
                 <div class="modal-header-view">
                     <i id="viewIcon" aria-hidden="true"></i>
-                    <h2 id="viewTitle"></h2>
+                    <h2 id="viewTitle" aria-live="polite" aria-label="Titre de la note"> &nbsp; </h2>
                     <button
                         class="close-modal-view"
                         id="closeViewModal"
@@ -286,4 +241,5 @@
         <script type="module" src="js/scripts.js"></script>
 
     </body>
+
 </html>
